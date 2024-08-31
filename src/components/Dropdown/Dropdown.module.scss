@@ -1,5 +1,6 @@
 @use "@/scss/colors.scss";
 @use "@/scss/fonts.scss";
+@use "@/scss/constants.scss";
 
 .Dropdown {
   position: relative;
@@ -39,7 +40,7 @@
     width: 100%;
 
     padding: 1.5rem;
-    border-radius: 1rem;
+    border-radius: constants.$radius-md;
 
     background-color: colors.$neutral-50;
     box-shadow: 0 0.375rem 1.875rem rgba(0, 0, 0, 0.1);

@@ -1,0 +1,57 @@
+@use "@/scss/colors.scss";
+@use "@/scss/constants.scss";
+
+.Toggle {
+  $toggle-width: 2.5rem;
+  $toggle-height: 1.25rem;
+  $toggle-decorator-scale: 0.7;
+  $toggle-decorator-size: calc($toggle-height * $toggle-decorator-scale);
+  $toggle-decorator-vertical-spacing: calc(
+    $toggle-height * (1 - $toggle-decorator-scale - 0.1)
+  );
+  $toggle-transition: all 250ms ease-out;
+
+  position: relative;
+
+  margin: 0;
+  border-radius: constants.$radius-pill;
+
+  width: $toggle-width;
+  height: $toggle-height;
+
+  background-color: colors.$neutral-500;
+
+  appearance: none;
+
+  cursor: pointer;
+
+  transition: $toggle-transition;
+
+  &::after {
+    content: "";
+
+    position: absolute;
+    top: 50%;
+    left: $toggle-decorator-vertical-spacing;
+    transform: translateY(-50%);
+
+    border-radius: constants.$radius-round;
+
+    width: $toggle-decorator-size;
+    height: $toggle-decorator-size;
+
+    background-color: colors.$neutral-50;
+
+    transition: $toggle-transition;
+  }
+
+  &:checked {
+    background-color: colors.$primary-500;
+
+    &::after {
+      left: calc(
+        100% - ($toggle-decorator-vertical-spacing + $toggle-decorator-size)
+      );
+    }
+  }
+}

@@ -2,7 +2,7 @@ import IconArrowDown from "@/assets/icons/icon-arrow-down.svg?react";
 import { useToggle } from "@/hooks/useToggle";
 import { useEffect, useMemo, useRef, type FocusEventHandler } from "react";
 
-import dropdownStyles from "./Dropdown.module.scss";
+import dropdownClasses from "./Dropdown.module.scss";
 
 export type DropdownOption<T> = {
   label: React.ReactNode;
@@ -61,24 +61,24 @@ export const Dropdown = <T,>({
 
   return (
     <div
-      className={dropdownStyles["Dropdown"]}
+      className={dropdownClasses["Dropdown"]}
       ref={dropdownRef}
       onBlur={closeOnBlur}
     >
       <button
-        className={dropdownStyles["Dropdown__toggle"]}
+        className={dropdownClasses["Dropdown__toggle"]}
         onClick={toggleIsOpen}
       >
         {activeLabel}
-        <IconArrowDown className={dropdownStyles["Dropdown__toggle-icon"]} />
+        <IconArrowDown className={dropdownClasses["Dropdown__toggle-icon"]} />
       </button>
 
       {isOpen && (
-        <ul className={dropdownStyles["Dropdown__menu"]}>
+        <ul className={dropdownClasses["Dropdown__menu"]}>
           {options.map(({ label, value }, index) => (
             <li key={index}>
               <button
-                className={dropdownStyles["Dropdown__menu-button"]}
+                className={dropdownClasses["Dropdown__menu-button"]}
                 onClick={() => {
                   setIsOpen(false);
                   onSelect(value);
