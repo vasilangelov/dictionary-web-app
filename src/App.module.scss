@@ -1,6 +1,20 @@
+@use "@/scss/fonts.scss";
+
 .App {
   margin-block: 1.75rem;
   margin-inline: auto;
 
   width: min(45rem, 90%);
+
+  &--sans-serif * {
+    font-family: fonts.$sans-serif;
+  }
+
+  &--serif * {
+    font-family: fonts.$serif;
+  }
+
+  &--mono * {
+    font-family: fonts.$mono;
+  }
 }

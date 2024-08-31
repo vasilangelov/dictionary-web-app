@@ -73,5 +73,9 @@
     @include screens.mobile {
       @include fonts.xs;
     }
+
+    &:hover {
+      color: colors.$primary-500;
+    }
   }
 }

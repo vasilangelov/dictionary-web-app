@@ -3,6 +3,7 @@ import { useToggle } from "@/hooks/useToggle";
 import { useEffect, useMemo, useRef, type FocusEventHandler } from "react";
 
 import dropdownClasses from "./Dropdown.module.scss";
+import classNames from "classnames";
 
 export type DropdownOption<T> = {
   label: React.ReactNode;
@@ -13,12 +14,14 @@ export type DropdownProps<T> = {
   value: T;
   options: DropdownOption<T>[];
   onSelect: (value: T) => void;
+  optionClassName?: (value: T) => string;
 };
 
 export const Dropdown = <T,>({
   value,
   options,
   onSelect,
+  optionClassName,
 }: DropdownProps<T>) => {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -78,7 +81,10 @@ export const Dropdown = <T,>({
           {options.map(({ label, value }, index) => (
             <li key={index}>
               <button
-                className={dropdownClasses["Dropdown__menu-button"]}
+                className={classNames(
+                  dropdownClasses["Dropdown__menu-button"],
+                  optionClassName?.(value)
+                )}
                 onClick={() => {
                   setIsOpen(false);
                   onSelect(value);

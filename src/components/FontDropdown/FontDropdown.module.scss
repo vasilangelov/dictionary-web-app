@@ -1,0 +1,17 @@
+@use "@/scss/fonts.scss";
+
+.FontDropdown {
+  &__option {
+    &--sans-serif {
+      font-family: fonts.$sans-serif;
+    }
+
+    &--serif {
+      font-family: fonts.$serif;
+    }
+
+    &--mono {
+      font-family: fonts.$mono;
+    }
+  }
+}
