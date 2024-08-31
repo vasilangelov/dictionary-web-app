@@ -1,8 +1,11 @@
 @use "@/scss/colors.scss";
 @use "@/scss/fonts.scss";
+@use "@/scss/screens.scss";
 
 .App {
   min-height: 100dvh;
+
+  @include fonts.sm;
 
   &--sans-serif * {
     font-family: fonts.$sans-serif;
@@ -29,9 +32,17 @@
   }
 
   &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 3.25rem;
+
     margin-inline: auto;
     padding-block: 1.75rem;
 
     width: min(45rem, 90%);
+
+    @include screens.mobile {
+      gap: 1.5rem;
+    }
   }
 }

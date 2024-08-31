@@ -1,4 +1,5 @@
 import { Header } from "@/components/Header";
+import { WordSearch } from "@/components/WordSearch";
 import { Font } from "@/constants/font";
 import { useTheme } from "@/hooks/useTheme";
 import classNames from "classnames";
@@ -9,6 +10,7 @@ import appClasses from "./App.module.scss";
 export const App: React.FC = () => {
   const [activeFont, setActiveFont] = useState(Font.SansSerif);
   const [activeTheme, setActiveTheme] = useTheme();
+  const [word, setWord] = useState<string>();
 
   return (
     <div
@@ -25,6 +27,8 @@ export const App: React.FC = () => {
           onFontSelect={setActiveFont}
           onThemeChange={setActiveTheme}
         />
+
+        <WordSearch word={word} onChange={setWord} />
       </div>
     </div>
   );

@@ -1,0 +1,14 @@
+@use "@/scss/colors.scss";
+@use "@/scss/fonts.scss";
+
+.WordSearch {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  @include fonts.md;
+
+  &__error {
+    color: colors.$danger-500;
+  }
+}

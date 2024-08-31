@@ -1,0 +1,75 @@
+@use "@/scss/constants.scss";
+@use "@/scss/colors.scss";
+@use "@/scss/fonts.scss";
+@use "@/scss/screens.scss";
+@use "@/scss/themes.scss";
+
+.Search {
+  padding: 0.875rem 1.5rem;
+  border: none;
+  border-radius: constants.$radius-md;
+
+  width: 100%;
+
+  @include fonts.md;
+  font-weight: fonts.$weight-bold;
+  background-color: colors.$neutral-200;
+  caret-color: colors.$primary-500;
+
+  @include themes.dark {
+    background-color: colors.$neutral-800;
+  }
+
+  @include screens.mobile {
+    @include fonts.sm;
+  }
+
+  &:focus-visible:not(:is(&--invalid, :invalid)) {
+    outline: 1px solid colors.$primary-500;
+  }
+
+  &--invalid,
+  &:invalid {
+    outline: 1px solid colors.$danger-500;
+  }
+
+  &::placeholder {
+    color: rgba(colors.$neutral-700, 0.25);
+
+    @include themes.dark {
+      color: rgba(colors.$neutral-50, 0.25);
+    }
+  }
+
+  &::-ms-clear {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  &::-ms-reveal {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  &::-webkit-search-decoration,
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-results-button,
+  &::-webkit-search-results-decoration {
+    display: none;
+  }
+
+  &__container {
+    position: relative;
+  }
+
+  &__icon {
+    position: absolute;
+    top: 50%;
+    right: 1.5rem;
+    transform: translateY(-50%);
+
+    stroke: colors.$primary-500;
+  }
+}
