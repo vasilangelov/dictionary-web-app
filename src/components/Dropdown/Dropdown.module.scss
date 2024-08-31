@@ -1,0 +1,61 @@
+@use "@/scss/colors.scss";
+@use "@/scss/fonts.scss";
+
+.Dropdown {
+  position: relative;
+
+  min-width: 10rem;
+
+  &__toggle {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+
+    padding: 0;
+    border: none;
+    background-color: colors.$transparent;
+
+    margin-left: auto;
+
+    cursor: pointer;
+
+    @include fonts.sm;
+  }
+
+  &__toggle-icon {
+    stroke: colors.$primary-500;
+  }
+
+  &__menu {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    position: absolute;
+    top: calc(100% + 1.125rem);
+    right: 0;
+
+    width: 100%;
+
+    padding: 1.5rem;
+    border-radius: 1rem;
+
+    background-color: colors.$neutral-50;
+    box-shadow: 0 0.375rem 1.875rem rgba(0, 0, 0, 0.1);
+  }
+
+  &__menu-button {
+    padding: 0;
+    border: none;
+
+    width: 100%;
+    text-align: start;
+
+    background-color: colors.$transparent;
+
+    cursor: pointer;
+
+    @include fonts.sm;
+  }
+}

@@ -22,7 +22,7 @@
 
     /* Path resoulution */
     "paths": {
-      "@*": ["./src/*"]
+      "@/*": ["./src/*"]
     }
   },
   "include": ["src"]
