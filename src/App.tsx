@@ -1,12 +1,14 @@
 import { Header } from "@/components/Header";
 import { Font } from "@/constants/font";
+import { useTheme } from "@/hooks/useTheme";
+import classNames from "classnames";
 import { useState } from "react";
 
 import appClasses from "./App.module.scss";
-import classNames from "classnames";
 
 export const App: React.FC = () => {
   const [activeFont, setActiveFont] = useState(Font.SansSerif);
+  const [activeTheme, setActiveTheme] = useTheme();
 
   return (
     <div
@@ -14,8 +16,16 @@ export const App: React.FC = () => {
         appClasses["App"],
         appClasses[`App--${activeFont}`]
       )}
+      data-theme={activeTheme}
     >
-      <Header font={activeFont} onFontSelect={setActiveFont} />
+      <div className={appClasses["App__container"]}>
+        <Header
+          font={activeFont}
+          theme={activeTheme}
+          onFontSelect={setActiveFont}
+          onThemeChange={setActiveTheme}
+        />
+      </div>
     </div>
   );
 };

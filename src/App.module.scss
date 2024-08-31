@@ -1,10 +1,8 @@
+@use "@/scss/colors.scss";
 @use "@/scss/fonts.scss";
 
 .App {
-  margin-block: 1.75rem;
-  margin-inline: auto;
-
-  width: min(45rem, 90%);
+  min-height: 100dvh;
 
   &--sans-serif * {
     font-family: fonts.$sans-serif;
@@ -16,5 +14,24 @@
 
   &--mono * {
     font-family: fonts.$mono;
+  }
+
+  &[data-theme="light"] {
+    background-color: colors.$neutral-50;
+
+    color: colors.$neutral-900;
+  }
+
+  &[data-theme="dark"] {
+    background-color: colors.$neutral-900;
+
+    color: colors.$neutral-50;
+  }
+
+  &__container {
+    margin-inline: auto;
+    padding-block: 1.75rem;
+
+    width: min(45rem, 90%);
   }
 }
