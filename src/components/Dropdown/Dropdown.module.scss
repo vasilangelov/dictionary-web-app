@@ -1,11 +1,16 @@
 @use "@/scss/colors.scss";
 @use "@/scss/fonts.scss";
 @use "@/scss/constants.scss";
+@use "@/scss/screens.scss";
 
 .Dropdown {
   position: relative;
 
   min-width: 10rem;
+
+  @include screens.mobile {
+    min-width: 7.5rem;
+  }
 
   &__toggle {
     display: flex;
@@ -22,6 +27,11 @@
     cursor: pointer;
 
     @include fonts.sm;
+    font-weight: fonts.$weight-bold;
+
+    @include screens.mobile {
+      @include fonts.xs;
+    }
   }
 
   &__toggle-icon {
@@ -58,5 +68,10 @@
     cursor: pointer;
 
     @include fonts.sm;
+    font-weight: fonts.$weight-bold;
+
+    @include screens.mobile {
+      @include fonts.xs;
+    }
   }
 }
