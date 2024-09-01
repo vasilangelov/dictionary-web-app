@@ -1,0 +1,31 @@
+@use "@/scss/fonts.scss";
+@use "@/scss/colors.scss";
+
+.NoDefinitionsMessage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  &__emoji {
+    margin-bottom: 2.5rem;
+
+    font-size: 4rem;
+    line-height: 4rem;
+  }
+
+  &__heading {
+    margin-bottom: 1.5rem;
+
+    @include fonts.md;
+    font-weight: fonts.$weight-bold;
+  }
+
+  &__description {
+    color: colors.$neutral-500;
+
+    @include fonts.sm;
+  }
+}
