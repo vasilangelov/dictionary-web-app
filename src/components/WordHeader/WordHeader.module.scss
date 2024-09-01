@@ -22,7 +22,7 @@
   }
 
   &__phonetic {
-    font-family: fonts.$sans-serif;
+    font-family: fonts.$sans-serif !important;
     color: colors.$primary-500;
 
     @include fonts.lg;

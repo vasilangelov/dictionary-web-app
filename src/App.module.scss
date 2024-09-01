@@ -1,5 +1,6 @@
-@use "@/scss/colors.scss";
 @use "@/scss/fonts.scss";
+@use "@/scss/colors.scss";
+@use "@/scss/themes.scss";
 @use "@/scss/screens.scss";
 
 .App {
@@ -43,6 +44,50 @@
 
     @include screens.mobile {
       gap: 1.5rem;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+
+    @include screens.mobile {
+      gap: 0.5rem;
+    }
+
+    &::before {
+      content: "";
+
+      display: block;
+
+      width: 100%;
+      height: 1px;
+
+      background-color: colors.$neutral-200;
+
+      @include themes.dark {
+        background-color: colors.$neutral-600;
+      }
+
+      @include screens.mobile {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+
+  &__footer-title {
+    text-decoration: underline;
+    color: colors.$neutral-500;
+  }
+
+  &__footer-link {
+    overflow-wrap: anywhere;
+
+    color: colors.$neutral-900;
+
+    @include themes.dark {
+      color: colors.$neutral-50;
     }
   }
 }

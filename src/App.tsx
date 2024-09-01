@@ -1,4 +1,5 @@
 import { Header } from "@/components/Header";
+import { WordInfo } from "@/components/WordInfo";
 import { WordSearch } from "@/components/WordSearch";
 import { Font } from "@/constants/font";
 import { QueryKey } from "@/constants/queryKeys";
@@ -10,7 +11,6 @@ import classNames from "classnames";
 import { useState } from "react";
 
 import appClasses from "./App.module.scss";
-import { WordInfo } from "./components/WordInfo";
 
 export const App: React.FC = () => {
   const [activeFont, setActiveFont] = useState(Font.SansSerif);
@@ -50,6 +50,20 @@ export const App: React.FC = () => {
         <WordSearch word={word} onChange={setWord} />
 
         <main>{hasWordInfo && <WordInfo wordInfo={wordInfo} />}</main>
+
+        {hasWordInfo && (
+          <footer className={appClasses["App__footer"]}>
+            <h2 className={appClasses["App__footer-title"]}>Source</h2>
+
+            <a
+              target="_blank"
+              href={wordInfo.sourceUrl}
+              className={appClasses["App__footer-link"]}
+            >
+              {wordInfo.sourceUrl}
+            </a>
+          </footer>
+        )}
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import { array, object, optional, pipe, string, transform } from "valibot";
 
-const WordMeaningSchema = object({
+export const WordMeaningSchema = object({
   partOfSpeech: string(),
   definitions: array(
     object({

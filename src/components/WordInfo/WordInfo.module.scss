@@ -1,0 +1,8 @@
+.WordInfo {
+  &,
+  &__meanings {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+}
