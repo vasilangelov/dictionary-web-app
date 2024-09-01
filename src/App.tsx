@@ -1,7 +1,11 @@
 import { Header } from "@/components/Header";
 import { WordSearch } from "@/components/WordSearch";
 import { Font } from "@/constants/font";
+import { QueryKey } from "@/constants/queryKeys";
+import { useDebouncedValue } from "@/hooks/useDebouncedValue";
 import { useTheme } from "@/hooks/useTheme";
+import { getWordInfo } from "@/services/word";
+import { useQuery } from "@tanstack/react-query";
 import classNames from "classnames";
 import { useState } from "react";
 
@@ -11,6 +15,18 @@ export const App: React.FC = () => {
   const [activeFont, setActiveFont] = useState(Font.SansSerif);
   const [activeTheme, setActiveTheme] = useTheme();
   const [word, setWord] = useState<string>();
+
+  const debouncedWord = useDebouncedValue(word?.trim());
+
+  const { data } = useQuery({
+    queryKey: [QueryKey.WordInfo, debouncedWord],
+    enabled: !!debouncedWord,
+    queryFn: async ({ signal }) =>
+      getWordInfo({
+        word: debouncedWord ?? "",
+        signal,
+      }),
+  });
 
   return (
     <div
@@ -29,6 +45,8 @@ export const App: React.FC = () => {
         />
 
         <WordSearch word={word} onChange={setWord} />
+
+        <div>{JSON.stringify(data)}</div>
       </div>
     </div>
   );
