@@ -17,24 +17,47 @@ export const WordInfoSchema = pipe(
     pipe(
       object({
         word: string(),
-        phonetic: string(),
+        phonetic: optional(string()),
         phonetics: array(
           object({
-            text: string(),
+            text: optional(string()),
             audio: optional(string()),
           })
         ),
         meanings: array(WordMeaningSchema),
         sourceUrls: array(string()),
       }),
-      transform((word) => ({
-        word: word.word,
-        phonetic: word.phonetics.find(({ audio }) => !!audio) ?? {
-          text: word.phonetic,
-        },
-        meanings: word.meanings,
-        sourceUrl: word.sourceUrls?.[0],
-      }))
+      transform((word) => {
+        let phonetic = word.phonetics.find(
+          (word) => !!word.text && !!word.audio
+        ) as
+          | {
+              text: string;
+              audio?: string;
+            }
+          | undefined;
+
+        if (!phonetic && word.phonetic) {
+          phonetic = {
+            text: word.phonetic,
+          };
+        }
+
+        if (!phonetic) {
+          phonetic = word.phonetics.find(({ text }) => !!text) as
+            | {
+                text: string;
+              }
+            | undefined;
+        }
+
+        return {
+          word: word.word,
+          phonetic,
+          meanings: word.meanings,
+          sourceUrl: word.sourceUrls?.[0],
+        };
+      })
     )
   ),
   transform((array) => (array?.length ? array[0] : null))

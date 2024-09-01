@@ -1,0 +1,34 @@
+@use "@/scss/fonts.scss";
+@use "@/scss/colors.scss";
+@use "@/scss/screens.scss";
+
+.WordHeader {
+  display: flex;
+  justify-content: space-between;
+
+  &__group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+
+  &__word {
+    @include fonts.xl;
+    font-weight: fonts.$weight-bold;
+
+    @include screens.mobile {
+      @include fonts.lg;
+    }
+  }
+
+  &__phonetic {
+    font-family: fonts.$sans-serif;
+    color: colors.$primary-500;
+
+    @include fonts.lg;
+
+    @include screens.mobile {
+      @include fonts.sm;
+    }
+  }
+}

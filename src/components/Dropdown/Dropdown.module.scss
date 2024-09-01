@@ -47,6 +47,7 @@
     position: absolute;
     top: calc(100% + 1.125rem);
     right: 0;
+    z-index: constants.$z-index-dropdown-menu;
 
     width: 100%;
 

@@ -10,6 +10,7 @@ import classNames from "classnames";
 import { useState } from "react";
 
 import appClasses from "./App.module.scss";
+import { WordInfo } from "./components/WordInfo";
 
 export const App: React.FC = () => {
   const [activeFont, setActiveFont] = useState(Font.SansSerif);
@@ -18,15 +19,17 @@ export const App: React.FC = () => {
 
   const debouncedWord = useDebouncedValue(word?.trim());
 
-  const { data } = useQuery({
+  const { isSuccess: hasWordInfoLoaded, data: wordInfo } = useQuery({
     queryKey: [QueryKey.WordInfo, debouncedWord],
     enabled: !!debouncedWord,
-    queryFn: async ({ signal }) =>
+    queryFn: ({ signal }) =>
       getWordInfo({
         word: debouncedWord ?? "",
         signal,
       }),
   });
+
+  const hasWordInfo = hasWordInfoLoaded && wordInfo !== null;
 
   return (
     <div
@@ -46,7 +49,7 @@ export const App: React.FC = () => {
 
         <WordSearch word={word} onChange={setWord} />
 
-        <div>{JSON.stringify(data)}</div>
+        <main>{hasWordInfo && <WordInfo wordInfo={wordInfo} />}</main>
       </div>
     </div>
   );
